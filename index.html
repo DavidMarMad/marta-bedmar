@@ -8,27 +8,24 @@
 
 <style>
   /* ============ tokens ============ */
+  /* Tema oscuro único, para todos los navegadores y ajustes del visitante. */
   :root{
     --ink:#161A34;
     --ink-2:#1F2444;
-    --paper:#EDEFF6;
-    --paper-2:#E4E7F1;
-    --card:#F6F7FB;
-    --text:#14162B;
-    --text-soft:#40456A;
-    --mist:#C7CCE0;
-    --line:#D3D7E6;
     --dawn:#E29A45;
     --dawn-deep:#C77E2B;
     --slate:#3B4062;
-    --focus:#3355d8;
+    --mist:#C7CCE0;
+    --focus:#7f9bff;
 
-    --bg:var(--paper);
-    --surface:var(--card);
-    --fg:var(--text);
-    --fg-soft:var(--text-soft);
-    --hairline:var(--line);
-    --eyebrow:#6b7096;
+    --bg:#161A34;
+    --surface:#1F2444;
+    --card:#1F2444;
+    --paper-2:#12162E;
+    --fg:#ECEDF7;
+    --fg-soft:#A9AEC9;
+    --hairline:#2E3358;
+    --eyebrow:#8b90b4;
 
     --measure:66ch;
     --maxw:70rem;
@@ -39,28 +36,6 @@
     --step-3:clamp(2rem,1.5rem + 2.4vw,3.4rem);
     --step-4:clamp(2.9rem,2rem + 4.2vw,5.6rem);
     --gap-section:clamp(4.5rem,8vw,7.5rem);
-  }
-  @media (prefers-color-scheme:dark){
-    :root:not([data-theme="light"]){
-      --bg:var(--ink);
-      --surface:var(--ink-2);
-      --fg:#ECEDF7;
-      --fg-soft:#A9AEC9;
-      --hairline:#2E3358;
-      --eyebrow:#8b90b4;
-      --card:#1F2444;
-      --paper-2:#12162E;
-    }
-  }
-  :root[data-theme="dark"]{
-    --bg:var(--ink);
-    --surface:var(--ink-2);
-    --fg:#ECEDF7;
-    --fg-soft:#A9AEC9;
-    --hairline:#2E3358;
-    --eyebrow:#8b90b4;
-    --card:#1F2444;
-    --paper-2:#12162E;
   }
 
   /* ============ base ============ */
@@ -122,7 +97,8 @@
   /* ============ nav ============ */
   .nav{
     position:sticky;top:0;z-index:50;
-    background:color-mix(in srgb,var(--bg) 88%,transparent);
+    background:rgba(22,26,52,.86);
+    -webkit-backdrop-filter:saturate(1.4) blur(10px);
     backdrop-filter:saturate(1.4) blur(10px);
     border-bottom:1px solid var(--hairline);
   }
@@ -136,9 +112,7 @@
     font-size:1.06rem;font-weight:600;letter-spacing:.01em;
     text-decoration:none;white-space:nowrap;
   }
-  .nav__name span{color:var(--dawn-deep)}
-  :root[data-theme="dark"] .nav__name span,
-  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .nav__name span{color:var(--dawn)}}
+  .nav__name span{color:var(--dawn)}
   .nav__links{display:flex;align-items:center;gap:1.6rem;margin:0}
   .nav__links a{
     font-size:var(--step--1);font-weight:500;text-decoration:none;color:var(--fg-soft);
@@ -153,20 +127,12 @@
   /* ============ hero ============ */
   .hero{
     position:relative;overflow:hidden;
-    border-bottom:1px solid var(--hairline);
   }
   .hero__bg{
     position:absolute;inset:0;z-index:0;
     background:
-      radial-gradient(120% 90% at 85% 8%, rgba(226,154,69,.20), transparent 55%),
-      linear-gradient(178deg, var(--ink) 0%, #1C2140 42%, #2A2350 78%, #3A2E4E 100%);
-  }
-  @media (prefers-color-scheme:light){
-    :root:not([data-theme="dark"]) .hero__bg{
-      background:
-        radial-gradient(120% 85% at 88% 0%, rgba(226,154,69,.34), transparent 52%),
-        linear-gradient(176deg, #20264A 0%, #2C2F55 40%, #43406B 72%, #5A4E70 100%);
-    }
+      radial-gradient(120% 90% at 85% 8%, rgba(226,154,69,.18), transparent 55%),
+      linear-gradient(180deg, #1B2042 0%, #262247 34%, #302A49 60%, #22203C 82%, #161A34 100%);
   }
   .hero__stars{
     position:absolute;inset:0;z-index:1;opacity:.5;
@@ -316,9 +282,7 @@
   }
   .years li b{font-weight:600;font-size:1.05rem}
   .years li span{font-size:var(--step--1);color:var(--fg-soft);text-align:right}
-  .years li.is-next b{color:var(--dawn-deep)}
-  :root[data-theme="dark"] .years li.is-next b{color:var(--dawn)}
-  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .years li.is-next b{color:var(--dawn)}}
+  .years li.is-next b{color:var(--dawn)}
 
   .figure{
     border:1px solid var(--hairline);border-radius:7px;overflow:hidden;
@@ -332,10 +296,11 @@
 
   /* jornada — its own chapter: warm tint + poster wall */
   #jornada{
+    background:#12162E;
     background:
-      radial-gradient(70% 55% at 92% -5%, color-mix(in srgb, var(--dawn) 14%, transparent), transparent 72%),
-      radial-gradient(60% 50% at 0% 105%, color-mix(in srgb, var(--slate) 16%, transparent), transparent 70%),
-      var(--paper-2);
+      radial-gradient(70% 55% at 92% -5%, rgba(226,154,69,.13), transparent 72%),
+      radial-gradient(60% 50% at 0% 105%, rgba(59,64,98,.34), transparent 70%),
+      #12162E;
   }
   #jornada .years{
     background:var(--card);
@@ -423,11 +388,9 @@
   .cv li:last-child{border-bottom:1px solid var(--hairline)}
   .cv li i{
     font-style:normal;font-variant-numeric:tabular-nums;
-    font-weight:600;color:var(--dawn-deep);font-size:var(--step--1);letter-spacing:.03em;
+    font-weight:600;color:var(--dawn);font-size:var(--step--1);letter-spacing:.03em;
     white-space:nowrap;
   }
-  :root[data-theme="dark"] .cv li i{color:var(--dawn)}
-  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cv li i{color:var(--dawn)}}
   .cv li b{font-weight:600;color:var(--fg)}
 
   .memb{margin-top:1.8rem}
