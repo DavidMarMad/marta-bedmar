@@ -529,6 +529,9 @@
   .cartel{box-shadow:0 20px 40px -26px rgba(40,32,22,.30)}
   /* foto de Conferencias: recorte minimo (se ve el publico) y mas grande */
   .conf-head{grid-template-columns:1fr .82fr}
+  /* Jornadas: sin lista lateral -> texto a ancho completo, encuadrado con los carteles */
+  .jornada__grid{grid-template-columns:1fr}
+  .jornada__body p{max-width:none}
   .conf-head__fig img{aspect-ratio:4/3;object-position:50% 68%}
   @media (max-width:820px){ .conf-head__fig{max-width:none} }
   #jornada .years{background:var(--card)}
@@ -638,19 +641,6 @@
             dormido sobre el mando— ya es reconocible en Baleares.
           </p>
         </div>
-
-        <div class="years">
-          <span class="years__label">Ediciones</span>
-          <ol>
-            <li><b>2017</b><span>I jornada</span></li>
-            <li><b>2018</b><span>II jornada</span></li>
-            <li><b>2019</b><span>III jornada</span></li>
-            <li><b>2020</b><span>IV jornada</span></li>
-            <li><b>2025</b><span>Son, pantallas y psicopatología</span></li>
-            <li class="is-next"><b>2026</b><span>Especial sexualidad</span></li>
-            <li class="is-next"><b>2027</b><span>Próxima edición</span></li>
-          </ol>
-        </div>
       </div>
 
       <div class="carteles" role="list" aria-label="Carteles de jornadas y charlas">
@@ -688,7 +678,7 @@
         </figure>
         <div>
           <p class="about__lead">
-            Psiquiatra y experta en medicina del sueño. Llevo la evidencia sobre
+            Hablo
             sueño, pantallas y salud mental a quienes acompañan a niños y
             adolescentes: profesionales de la salud, la educación y las familias.
           </p>
