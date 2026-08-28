@@ -888,6 +888,7 @@
 
     var bleed = CONFIG.SANGRADO_BORDE;
     var colocados = [], piezas = [], intentos = 0, maxIntentos = objetivo * 14;
+    var maxCaca = { i: -1, w: 0 };
 
     while (piezas.length < objetivo && intentos < maxIntentos) {
       intentos++;
@@ -917,6 +918,7 @@
 
       var op = CONFIG.OPACIDAD_REL_MIN + rand() * (CONFIG.OPACIDAD_REL_MAX - CONFIG.OPACIDAD_REL_MIN);
 
+      if (tipo === 'caca' && w > maxCaca.w) { maxCaca.w = w; maxCaca.i = piezas.length; }
       colocados.push({ x: x, y: y, radio: radio });
       piezas.push(
         '<use href="#dd-' + tipo + '" x="' + (x - w / 2).toFixed(1) + '" y="' + (y - h / 2).toFixed(1) +
@@ -924,6 +926,9 @@
         '" transform="rotate(' + rot.toFixed(1) + ' ' + x.toFixed(1) + ' ' + y.toFixed(1) + ')"/>'
       );
     }
+
+    // la caca mas grande se convierte en casita (peticion de David); las demas se dejan
+    if (maxCaca.i >= 0) piezas[maxCaca.i] = piezas[maxCaca.i].replace('#dd-caca', '#dd-casas');
 
     capa.innerHTML =
       '<svg xmlns="http://www.w3.org/2000/svg" width="' + anchoDoc + '" height="' + altoDoc +
